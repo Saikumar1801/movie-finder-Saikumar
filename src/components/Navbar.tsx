@@ -47,42 +47,42 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-white/5 bg-slate-950/80 backdrop-blur-xl">
-      <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-xl">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-3">
+        <Link to="/" className="flex items-center gap-2 shrink-0 transition-transform hover:scale-105 active:scale-95">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 shadow-lg shadow-indigo-500/20">
             <div className="h-4 w-4 rotate-45 rounded-sm border-2 border-white"></div>
           </div>
-          <h1 className="text-xl font-black tracking-tighter text-white">
+          <h1 className="text-lg sm:text-xl font-black tracking-tighter text-foreground">
             CINE<span className="text-indigo-500">SEARCH</span>
           </h1>
         </Link>
 
-        <div className="relative mx-4 hidden max-w-md flex-1 md:block">
+        <div className="relative flex-1 max-w-md mx-2 sm:mx-4">
           <form onSubmit={handleSearch}>
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               type="search"
-              placeholder="Search titles, actors..."
+              placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setShowDropdown(true)}
               onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-              className="w-full rounded-full border border-white/10 bg-slate-900/50 py-2 pl-10 pr-4 text-sm text-slate-200 outline-none transition-all placeholder:text-slate-600 focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500/40"
+              className="w-full rounded-full border border-border bg-muted/50 py-1.5 pl-9 pr-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:bg-background focus:ring-2 focus:ring-indigo-500/40"
             />
           </form>
 
           {showDropdown && recentSearches.length > 0 && (
-            <div className="absolute top-full left-0 mt-2 w-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl backdrop-blur-xl">
+            <div className="absolute top-full left-0 mt-2 w-full overflow-hidden rounded-2xl border border-border bg-card shadow-2xl backdrop-blur-xl">
               <div className="p-2">
-                <span className="mb-2 block px-3 text-[10px] font-black uppercase tracking-widest text-slate-500">Recent Searches</span>
+                <span className="mb-2 block px-3 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Recent</span>
                 {recentSearches.map((query, index) => (
                   <button
                     key={index}
                     onClick={() => handleRecentClick(query)}
-                    className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                    className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   >
-                    <Search className="h-3 w-3 text-slate-500" />
+                    <Search className="h-3 w-3 text-muted-foreground" />
                     {query}
                   </button>
                 ))}
@@ -91,16 +91,16 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <button
             onClick={() => setIsDark(!isDark)}
-            className="rounded-full p-2 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             aria-label="Toggle theme"
           >
             {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
 
-          <Link to="/favorites" className="text-[11px] font-black uppercase tracking-widest text-slate-400 transition-colors hover:text-white">
+          <Link to="/favorites" className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
             Library
           </Link>
         </div>
