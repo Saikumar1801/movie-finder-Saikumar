@@ -51,10 +51,21 @@ export default function FavoritesPage() {
       </div>
 
       {favorites.length === 0 ? (
-        <div className="flex flex-col items-center justify-center gap-4 rounded-3xl border-2 border-dashed py-24 text-center">
-          <p className="text-xl font-medium text-muted-foreground">No favorites yet.</p>
-          <Link to="/" className="text-primary font-bold hover:underline">
-            Explore and add some movies!
+        <div className="flex flex-col items-center justify-center gap-6 rounded-3xl border-2 border-dashed border-border py-24 text-center">
+          <div className="rounded-full bg-muted p-6">
+            <HeartCrack className="h-10 w-10 text-muted-foreground" />
+          </div>
+          <div className="space-y-2 px-4">
+            <h2 className="text-xl font-bold text-foreground capitalize">Your library is empty</h2>
+            <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+              You haven't saved any movies yet. Go back to the explore page to find your next favorite titles.
+            </p>
+          </div>
+          <Link 
+            to="/" 
+            className="rounded-xl bg-indigo-600 px-8 py-3 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-indigo-500/20 hover:bg-indigo-700 transition-all active:scale-95"
+          >
+            Explore Movies
           </Link>
         </div>
       ) : (
