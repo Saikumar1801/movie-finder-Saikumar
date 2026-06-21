@@ -35,8 +35,8 @@ export default function FavoritesPage() {
         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-2 block">
           Your Collection
         </span>
-        <h1 className="text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl">PERSONAL LIBRARY</h1>
-        <p className="mt-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+        <h1 className="text-4xl font-black tracking-tighter text-foreground sm:text-5xl lg:text-6xl">PERSONAL LIBRARY</h1>
+        <p className="mt-4 text-xs font-bold uppercase tracking-widest text-muted-foreground">
           {favorites.length} {favorites.length === 1 ? "movie" : "movies"} saved
         </p>
       </div>
