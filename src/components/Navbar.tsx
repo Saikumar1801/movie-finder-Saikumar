@@ -4,20 +4,21 @@ import { Search, Moon, Sun, Film } from "lucide-react";
 import { cn } from "../lib/utils";
 
 export default function Navbar() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved ? saved === "dark" : true;
+  });
   const [searchQuery, setSearchQuery] = useState("");
-  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [recentSearches, setRecentSearches] = useState<string[]>(() => {
+    const saved = localStorage.getItem("recent_searches");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const saved = localStorage.getItem("recent_searches");
-    if (saved) {
-      setRecentSearches(JSON.parse(saved));
-    }
-  }, []);
-
-  useEffect(() => {
+    localStorage.setItem("theme", isDark ? "dark" : "light");
     const root = window.document.documentElement;
     if (isDark) {
       root.classList.add("dark");
@@ -48,8 +49,14 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-xl">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-3">
-        <Link to="/" className="flex items-center gap-2 shrink-0 transition-transform hover:scale-105 active:scale-95">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-2 sm:gap-4">
+        <Link 
+          to="/" 
+          className={cn(
+            "flex items-center gap-2 shrink-0 transition-all duration-300",
+            isSearchFocused && "w-0 opacity-0 overflow-hidden sm:w-auto sm:opacity-100"
+          )}
+        >
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 shadow-lg shadow-indigo-500/20">
             <div className="h-4 w-4 rotate-45 rounded-sm border-2 border-white"></div>
           </div>
@@ -58,17 +65,26 @@ export default function Navbar() {
           </h1>
         </Link>
 
-        <div className="relative flex-1 max-w-md mx-2 sm:mx-4">
+        <div className={cn(
+          "relative flex-1 transition-all duration-300",
+          isSearchFocused ? "max-w-full" : "max-w-[200px] sm:max-w-md"
+        )}>
           <form onSubmit={handleSearch}>
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               type="search"
-              placeholder="Search..."
+              placeholder="Search movies..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => setShowDropdown(true)}
-              onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-              className="w-full rounded-full border border-border bg-muted/50 py-1.5 pl-9 pr-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:bg-background focus:ring-2 focus:ring-indigo-500/40"
+              onFocus={() => {
+                setShowDropdown(true);
+                setIsSearchFocused(true);
+              }}
+              onBlur={() => {
+                setTimeout(() => setShowDropdown(false), 200);
+                setIsSearchFocused(false);
+              }}
+              className="w-full rounded-full border border-border bg-muted/30 py-2 pl-9 pr-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:bg-background focus:ring-2 focus:ring-indigo-500/40"
             />
           </form>
 
@@ -91,7 +107,10 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+        <div className={cn(
+          "flex items-center gap-1 sm:gap-4 shrink-0 transition-all duration-300",
+          isSearchFocused && "w-0 opacity-0 overflow-hidden sm:w-auto sm:opacity-100"
+        )}>
           <button
             onClick={() => setIsDark(!isDark)}
             className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -100,7 +119,7 @@ export default function Navbar() {
             {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
 
-          <Link to="/favorites" className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
+          <Link to="/favorites" className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground whitespace-nowrap">
             Library
           </Link>
         </div>

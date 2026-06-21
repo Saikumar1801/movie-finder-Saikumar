@@ -140,14 +140,21 @@ export default function Home() {
         </div>
       ) : error ? (
         <div className="flex min-h-[40vh] flex-col items-center justify-center gap-4 text-center">
-          <SearchX className="h-10 w-10 text-red-500" />
+          <div className="rounded-full bg-red-500/10 p-6">
+            <SearchX className="h-10 w-10 text-red-500" />
+          </div>
           <h2 className="text-2xl font-bold uppercase tracking-widest text-red-400">Error</h2>
-          <p className="text-slate-500">{error}</p>
+          <p className="text-muted-foreground">{error}</p>
         </div>
       ) : movies.length === 0 ? (
-        <div className="flex min-h-[40vh] flex-col items-center justify-center gap-4 text-center">
-          <SearchX className="h-12 w-12 text-slate-700" />
-          <h2 className="text-xl font-bold text-slate-400">No movies found</h2>
+        <div className="flex min-h-[40vh] flex-col items-center justify-center gap-6 text-center">
+          <div className="rounded-full bg-muted p-6">
+            <SearchX className="h-12 w-12 text-muted-foreground" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-xl font-bold text-foreground capitalize">No movies found</h2>
+            <p className="text-sm text-muted-foreground">Try adjusting your search or filters.</p>
+          </div>
         </div>
       ) : (
         <>

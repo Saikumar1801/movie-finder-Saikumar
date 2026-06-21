@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Movie } from "../types";
 import MovieCard from "../components/MovieCard";
-import { Loader2, HeartCrack } from "lucide-react";
+import { Loader2, HeartCrack, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
 import { storage } from "../lib/storage";
@@ -31,6 +31,15 @@ export default function FavoritesPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <div className="mb-8">
+        <Link 
+          to="/" 
+          className="mb-6 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-indigo-500 group"
+        >
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
+          Back to Explore
+        </Link>
+      </div>
       <div className="mb-12 text-center">
         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-2 block">
           Your Collection

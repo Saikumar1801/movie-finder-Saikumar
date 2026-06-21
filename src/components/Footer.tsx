@@ -1,20 +1,20 @@
 export default function Footer() {
   return (
-    <footer className="h-16 border-t border-border bg-background flex items-center justify-between px-4 sm:px-8 text-[11px] text-muted-foreground font-medium">
-      <div className="flex items-center gap-8">
+    <footer className="min-h-16 py-6 border-t border-border bg-background flex flex-col sm:flex-row items-center justify-between px-4 sm:px-8 gap-4 text-[11px] text-muted-foreground font-medium">
+      <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
         <span>© {new Date().getFullYear()} CineSearch Media Inc.</span>
-        <div className="hidden sm:flex gap-4">
+        <div className="flex gap-4">
           <a href="#" className="hover:text-foreground transition-colors">Terms</a>
           <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-          <a href="#" className="hover:text-foreground transition-colors">Help Center</a>
+          <a href="#" className="hover:text-foreground transition-colors hidden sm:inline">Help Center</a>
         </div>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center gap-4">
         <span className="font-bold text-foreground">
           Built for Jeevan — Saikumar
         </span>
         <div className="flex items-center gap-2">
-          <span>System Status: <span className="text-emerald-500">Online</span></span>
+          <span>System Status: <span className="text-emerald-500">Live</span></span>
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
         </div>
       </div>
