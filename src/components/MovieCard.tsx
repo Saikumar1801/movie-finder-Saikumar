@@ -64,22 +64,24 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <button
           onClick={toggleFavorite}
           className={cn(
-            "absolute left-3 top-3 z-10 rounded-xl p-2.5 backdrop-blur-md transition-all active:scale-90 opacity-0 group-hover:opacity-100",
-            isFavorited ? "bg-red-500 text-white opacity-100" : "bg-white/10 text-white hover:bg-white/20"
+            "absolute left-3 top-3 z-10 rounded-xl p-2.5 backdrop-blur-md transition-all active:scale-90 sm:opacity-0 sm:group-hover:opacity-100",
+            isFavorited ? "bg-red-500 text-white shadow-lg shadow-red-500/20" : "bg-black/40 text-white hover:bg-black/60 border border-white/10"
           )}
         >
           <Heart className={cn("h-4 w-4", isFavorited && "fill-current")} />
         </button>
-
-        <div className="absolute bottom-3 left-3 right-3 text-white opacity-0 transition-all translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
-          <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-1">
-            {formatDate(movie.release_date)}
-          </p>
-          <h3 className="line-clamp-2 text-sm font-bold leading-tight">
-            {movie.title}
-          </h3>
-        </div>
       </Link>
+
+      <div className="p-3">
+        <div className="flex items-center gap-2 mb-1">
+          <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500">
+            {movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}
+          </p>
+        </div>
+        <h3 className="line-clamp-1 text-sm font-black leading-tight tracking-tight text-foreground group-hover:text-indigo-500 transition-colors">
+          {movie.title}
+        </h3>
+      </div>
     </motion.div>
   );
 }
