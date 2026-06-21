@@ -144,7 +144,13 @@ export default function Home() {
             <SearchX className="h-10 w-10 text-red-500" />
           </div>
           <h2 className="text-2xl font-bold uppercase tracking-widest text-red-400">Error</h2>
-          <p className="text-muted-foreground">{error}</p>
+          <p className="text-muted-foreground mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="rounded-xl bg-indigo-600 px-8 py-3 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-indigo-500/20 hover:bg-indigo-700 transition-all active:scale-95"
+          >
+            Retry
+          </button>
         </div>
       ) : movies.length === 0 ? (
         <div className="flex min-h-[40vh] flex-col items-center justify-center gap-6 text-center">
@@ -155,6 +161,15 @@ export default function Home() {
             <h2 className="text-xl font-bold text-foreground capitalize">No movies found</h2>
             <p className="text-sm text-muted-foreground">Try adjusting your search or filters.</p>
           </div>
+          <button 
+            onClick={() => {
+              setSearchParams({ q: "", page: "1" });
+              setSelectedGenre(null);
+            }}
+            className="mt-2 text-sm font-bold text-indigo-500 hover:underline"
+          >
+            Clear all filters
+          </button>
         </div>
       ) : (
         <>
