@@ -44,7 +44,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
       whileHover={{ y: -8 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="group relative flex flex-col overflow-hidden rounded-2xl bg-slate-900/40 border border-white/5 shadow-sm transition-all hover:border-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/10 ring-0 hover:ring-2 hover:ring-indigo-500/50"
+      className="group relative flex flex-col overflow-hidden rounded-2xl bg-card border border-border shadow-sm transition-all hover:border-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/10"
     >
       <Link to={`/movie/${movie.id}`} className="relative aspect-[2/3] overflow-hidden">
         <img
@@ -53,7 +53,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-90" />
         
         <div className="absolute right-2 top-2 z-10">
           <div className="flex items-center gap-1 rounded-lg bg-black/60 px-2 py-1 text-[10px] font-black text-yellow-500 backdrop-blur-md border border-white/10">
