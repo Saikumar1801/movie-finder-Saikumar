@@ -97,7 +97,7 @@ export default function Home() {
           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-2 block">
             Discovery
           </span>
-          <h1 className="text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-black tracking-tighter text-foreground sm:text-5xl lg:text-6xl">
             {query ? `RESULTS FOR "${query}"` : "EXPLORE TITLES"}
           </h1>
         </div>
@@ -109,7 +109,7 @@ export default function Home() {
               className={`rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all ${
                 selectedGenre === null 
                   ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20" 
-                  : "bg-slate-900 border border-white/5 text-slate-400 hover:text-white"
+                  : "bg-card border border-border text-muted-foreground hover:text-foreground"
               }`}
             >
               All
@@ -124,7 +124,7 @@ export default function Home() {
                 className={`rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all ${
                   selectedGenre === genre.id 
                     ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20" 
-                    : "bg-slate-900 border border-white/5 text-slate-400 hover:text-white"
+                    : "bg-card border border-border text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {genre.name}
