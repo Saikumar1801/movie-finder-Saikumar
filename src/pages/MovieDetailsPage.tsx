@@ -150,8 +150,8 @@ export default function MovieDetailsPage() {
                   <Heart className={cn("h-4 w-4", isFavorited && "fill-current")} />
                   {isFavorited ? "Saved to Library" : "Add to Library"}
                 </button>
-                <button className="flex items-center gap-2 rounded-xl bg-slate-800/40 px-10 py-4 text-[13px] font-black uppercase tracking-widest text-white backdrop-blur-md border border-white/5 hover:bg-slate-800 transition-all">
-                  <Play className="h-4 w-4 fill-current text-indigo-400" />
+                <button className="flex items-center gap-2 rounded-xl bg-muted px-10 py-4 text-[13px] font-black uppercase tracking-widest text-foreground border border-border hover:bg-muted/80 transition-all">
+                  <Play className="h-4 w-4 fill-current text-indigo-500" />
                   Watch Now
                 </button>
               </div>
@@ -165,9 +165,9 @@ export default function MovieDetailsPage() {
                 </div>
 
                 {movie.videos?.results.find(v => v.type === "Trailer" && v.site === "YouTube") && (
-                  <div className="mt-8 border-t border-white/5 pt-8">
-                    <h2 className="mb-6 text-2xl font-bold text-white tracking-tight uppercase tracking-[0.1em] text-sm text-indigo-500">Official Trailer</h2>
-                    <div className="aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-slate-900 shadow-2xl">
+                  <div className="mt-8 border-t border-border pt-8">
+                    <h2 className="mb-6 text-2xl font-bold tracking-tight uppercase tracking-[0.1em] text-[10px] text-indigo-500">Official Trailer</h2>
+                    <div className="aspect-video w-full overflow-hidden rounded-2xl border border-border bg-black shadow-2xl">
                       <iframe
                         src={`https://www.youtube.com/embed/${movie.videos.results.find(v => v.type === "Trailer" && v.site === "YouTube")?.key}`}
                         title="Movie Trailer"
@@ -178,14 +178,14 @@ export default function MovieDetailsPage() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-4 border-t border-white/5 pt-6">
+                <div className="grid grid-cols-2 gap-4 border-t border-border pt-6">
                   <div>
                     <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-1 text-[10px]">Budget</h3>
-                    <p className="text-lg font-mono text-white">${movie.budget.toLocaleString()}</p>
+                    <p className="text-lg font-mono text-foreground">${movie.budget.toLocaleString()}</p>
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-1 text-[10px]">Revenue</h3>
-                    <p className="text-lg font-mono text-white">${movie.revenue.toLocaleString()}</p>
+                    <p className="text-lg font-mono text-foreground">${movie.revenue.toLocaleString()}</p>
                   </div>
                 </div>
               </div>
